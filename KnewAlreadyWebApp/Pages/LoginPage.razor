@@ -53,13 +53,13 @@
     private async Task LoginUser()
     {
         isLoginInProgress = true;
-        hasErrors = false;
+        hasErrors = true;
 
         try
         {
             var state = await ((CustomAuthProvider)authStateProvider).Login(username, password);
 
-            hasErrors = state.User.Identity.Name == "anonymous";
+            hasErrors = state?.User?.Identity?.Name == "anonymous";
 
         }
         finally

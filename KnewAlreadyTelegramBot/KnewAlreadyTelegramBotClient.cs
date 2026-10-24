@@ -1,5 +1,4 @@
 ﻿using Telegram.Bot;
-using Telegram.Bot.Types;
 
 namespace KnewAlreadyTelegramBot;
 
@@ -9,7 +8,7 @@ public class KnewAlreadyTelegramBotClient
 
     public KnewAlreadyTelegramBotClient(string apiKey)
     {
-        client = new TelegramBotClient(apiKey, new HttpClient());
+        client = new TelegramBotClient(apiKey);
     }
 
     public async Task NotifyBotUser(string userTelegramName, string message)

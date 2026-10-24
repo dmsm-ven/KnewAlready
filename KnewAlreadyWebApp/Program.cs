@@ -1,14 +1,13 @@
-using KnewAlreadyCore;
-using KnewAlreadyWebApp;
 using KnewAlreadyWebApp.Data;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 #if DEBUG
+//Локальная запущенная версия
 string apiHost = "https://localhost:7052/";
 #else
+//Хост хонтейнер docker в сети на сервере
 string apiHost = "http://knewalready-api/";
 #endif
 
@@ -19,7 +18,6 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddSingleton<JwtTokenValidator>();
 
 builder.Services.AddScoped<HttpClient>(x => new HttpClient(new HttpClientHandler()));
-builder.Services.AddScoped<SuggestApiSwaggerClient>(x => new SuggestApiSwaggerClient(apiHost, x.GetService<HttpClient>()));
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthProvider>();
 
 var app = builder.Build();
